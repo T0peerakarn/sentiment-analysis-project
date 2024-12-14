@@ -39,7 +39,7 @@ const ResultPage = () => {
     { label: "positive", styles: "bg-[#38A617] hover:bg-[#5AC839]" },
   ];
 
-  const voteHandler = (vote: Sentiment) => {
+  const voteHandler = async (vote: Sentiment) => {
     setIsVote(true);
 
     Swal.fire({
@@ -48,7 +48,7 @@ const ResultPage = () => {
       icon: "success",
     });
 
-    createFeedback(text!, result!.sentiment as Sentiment, vote);
+    await createFeedback(text!, result!.sentiment as Sentiment, vote);
   };
 
   useEffect(() => {
