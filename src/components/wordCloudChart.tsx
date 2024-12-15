@@ -19,7 +19,7 @@ export function WordCloudChart(props: IWordCloudChartProps) {
     const values = props.data.map((r) => {
       return r.value;
     });
-    console.log("props.data", props.data);
+
     setMax(Math.max(...values));
     setData(props.data);
   }, [props.data]);

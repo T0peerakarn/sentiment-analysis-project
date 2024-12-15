@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useSearchParams, redirect } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { IoCaretBack } from "react-icons/io5";
 
 interface IResult {
   sentiment: "negative" | "neutral" | "positive";
@@ -44,7 +45,7 @@ const ResultPage = () => {
 
     Swal.fire({
       title: "Success",
-      text: "your vote has been submitted",
+      text: "Your vote has been submitted.",
       icon: "success",
     });
 
@@ -56,32 +57,36 @@ const ResultPage = () => {
   }, [text]);
 
   return result ? (
-    <div>
-      <header className="bg-[#5E62CC] text-white p-5 text-center w-full flex justify-between items-center">
-        <button
-          className=" text-white px-4 py-1 rounded hover:bg-white hover:text-black transition-all"
+    <div className="w-full">
+      <header className="bg-[#5E62CC] text-white p-5 w-full flex flex-row items-center">
+        <IoCaretBack
+          size="2em"
           onClick={() => redirect("/")}
-        >
-          Back to Home
-        </button>
-        <h1>NTN Sentiment Analyzer</h1>
-        <div></div>
+          className="mr-auto cursor-pointer"
+        />
+        <h1 className="w-full text-center">NTN Sentimental Analyzer</h1>
+        <IoCaretBack size="2em" className="ml-auto" color="#5E62CC" />
       </header>
-      <main className="px-60 py-5">
-        <h2 className="mb-5">Inputted text: </h2>
-        <section className="mb-5">
-          <div className="border rounded-lg p-4">{text}</div>
+
+      <main className="flex flex-col gap-5 py-5 px-4 tablet:px-8 laptop:px-20">
+        <section className="flex flex-col gap-2">
+          <h2>Inputted text: </h2>
+          <div>
+            <div className="border rounded-lg p-4">{text}</div>
+          </div>
         </section>
-        <h2 className="mb-5">Overall sentiment: </h2>
-        <div className="flex items-center border rounded-lg p-4">
-          <h2>It is determined that the sentiment of the given text is: </h2>
-          <h2
-            className="text-3xl font-semibold ml-10"
-            style={{ color: getSentimentColor(result.sentiment) }}
-          >
-            {result.sentiment} ({Math.round(result.score * 1000) / 1000})
-          </h2>
-        </div>
+
+        <section className="flex flex-col gap-2">
+          <h2>Overall sentiment: </h2>
+          <div className="flex justify-center items-center border rounded-lg p-4">
+            <h2
+              className="text-3xl font-semibold"
+              style={{ color: getSentimentColor(result.sentiment) }}
+            >
+              {result.sentiment} ({Math.round(result.score * 1000) / 1000})
+            </h2>
+          </div>
+        </section>
 
         <WordCloudChart
           data={result.attentions.map((a) => ({
@@ -90,11 +95,13 @@ const ResultPage = () => {
           }))}
         />
 
-        <div>
-          <h2 className="mb-5">What do you think?</h2>
-          <div className="border rounded-lg p-4 flex flex-row justify-evenly">
+        <section className="flex flex-col gap-2">
+          <h2>What do you think?</h2>
+          <div className="border rounded-lg p-4 flex flex-col tablet:flex-row justify-evenly gap-y-2">
             {isVote ? (
-              <p>Thank you for your feedback :D</p>
+              <p className="w-full text-center">
+                Thank you for your feedback :D
+              </p>
             ) : (
               voteButtons.map((item) => (
                 <Button
@@ -106,7 +113,7 @@ const ResultPage = () => {
               ))
             )}
           </div>
-        </div>
+        </section>
       </main>
     </div>
   ) : (

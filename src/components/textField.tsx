@@ -19,14 +19,14 @@ const TextField: React.FC<IProps> = (props) => {
   };
 
   return (
-    <div className="relative w-full mb-2">
+    <div className="relative w-full">
       <textarea
-        className={`resize-none w-full p-2 bg-[#F4F5FF] rounded-3xl text-sm border-2 border-[#5E62CC] focus:outline-none placeholder-gray-500 ${
+        className={`resize-none w-full p-4 bg-[#F4F5FF] rounded-3xl text-sm border-2 border-[#5E62CC] focus:outline-none placeholder-gray-500 ${
           wordCount > 80 ? "border-red-500" : ""
         }`}
         value={props.state}
         onChange={handleInputChange}
-        placeholder="Copy and paste your text for sentiment analysis here"
+        placeholder="Type or paste your text for sentiment analysis here"
         style={{ height: "300px", color: props.state ? "black" : "gray" }}
       />
       <p
