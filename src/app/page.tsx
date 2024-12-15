@@ -42,6 +42,7 @@ export default function Home() {
             height={0}
             sizes="100vw"
             className="w-[80px] tablet:w-[500px]"
+            unoptimized
           />
         </main>
       </div>
