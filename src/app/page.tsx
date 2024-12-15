@@ -31,10 +31,10 @@ export default function Home() {
   return (
     <div className="flex min-h-screen flex-col tablet:flex-row">
       <div
-        className="flex-[2_2_0%] p-2 tablet:p-20 tablet:rounded-tr-3xl"
+        className="flex-[2_2_0%] flex justify-center p-2 tablet:p-20 tablet:rounded-tr-3xl"
         style={{ backgroundColor: "#5E62CC" }}
       >
-        <main className="flex flex-col gap-8 items-center tablet:items-start">
+        <main className="flex flex-col justify-center laptop:justify-start">
           <Image
             src="/images/main_illus.png"
             alt="Main Illustration"
