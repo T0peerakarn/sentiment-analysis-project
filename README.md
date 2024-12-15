@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NTN Sentiment Analyzer
 
-## Getting Started
+NTN Sentiment Analyzer is a web application designed to interpret the sentiment of user-provided text. The application outputs a sentiment label (positive, negative, or neutral) along with a visualization of token attention scores in the form of a word cloud. The size of each word in the word cloud corresponds to its attention score, highlighting the most significant tokens in the sentiment analysis.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Sentiment Analysis**: Determines whether the input text has a positive, negative, or neutral sentiment, along with the confidence score of the model.
+- **Token Attention Word Cloud**: Visualizes token importance based on attention scores, with larger words indicating higher scores.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Follow these steps to set up and run the application locally:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/T0peerakarn/sentiment-analysis-project.git
+   cd sentiment-analysis-project
+   ```
 
-## Learn More
+2. **Install dependencies**
+   Make sure you have Node.js installed on your system. Then, install the required dependencies
+   ```bash
+   npm install
+   ```
+3. **Setup the Supabase**
+   Create a supabase project, which consists of a table called `Feedback`. The table could have four columns, including:
+   - `id`: a primary key of the record as `uuid` format
+   - `text`: a user's input text
+   - `predict`: a sentiment label predicted by the model
+   - `vote`: an opinion of the user
+   
+   Note that the value of `predict` and `vote` must is either `positive`, `negative`, or `neutral`.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Setup your sentiment API**
+   
+4. **Create .env file consisting SUPABASE_URL, SUPABASE_KEY, and SENTIMENT_API_URL**
+   For example,
+   ```bash
+   SUPABASE_URL="https://example.supabase.co"
+   SUPABASE_KEY="example_supabase_key"
+   SENTIMENT_API_URL="example.sentiment-api.com/analyse"
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. **Run the application**
+   Using
+   ```bash
+    
+   ```
+   
+   And open your browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: React, TypeScript, Next.js, TailwindCSS, PostCSS
+- **Backend**: FastAPI, Supabase
+- **Sentiment Model**: Fine-tuned Distilbert
+- **Visualization**: react-d3-cloud
